@@ -1,4 +1,27 @@
+# TO DO: sort out the usued packages
 from Bio.PDB import PDBParser
+import os
+import pandas as pd
+import colabdesign
+import sys
+import numpy as np
+import jax
+from colabdesign.shared.utils import copy_dict
+from Bio.PDB import PDBParser, PDBIO
+
+from collections import defaultdict
+from scipy.spatial import cKDTree
+from Bio import BiopythonWarning
+from Bio.PDB import DSSP, Selection, Polypeptide, Select, Chain, Superimposer
+from Bio.PDB.SASA import ShrakeRupley
+from Bio.SeqUtils.ProtParam import ProteinAnalysis
+from Bio.PDB.Selection import unfold_entities
+
+
+from Bio.PDB.SASA import ShrakeRupley
+from Bio.PDB import PDBParser, PDBIO, Model, Chain, Structure
+from Bio.PDB import StructureBuilder
+from Bio.PDB.Polypeptide import is_aa # Assuming is_aa is needed and available
 
 def chain_length(pdb_path, chain_id=str):
     parser = PDBParser(QUIET=True)
