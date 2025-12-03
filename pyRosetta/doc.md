@@ -17,3 +17,5 @@ Preparing Ligand PDB Files
 Now that the ResidueType is defined, the PDB file for ligand interface prediction can be made. If the PDB file already has the ligand present, ensure that its ResisueType column (PDB file format) is set to the ligand ResidueType ("ATP" for the example case). It is common practice to rename the chain to "X". 
 
 Inside the relevant script or interpreter, create a non-standard ResidueTypeSet using the method generate_nonstandard_residue_set and use use pose_from_pdb to load data into to a pose object. The method pose_from_pdb is overloaded such that it can accept a Pose (poses), a ResidueTypeSet (residue_set), and a string (filename) and load into the poses the data in the PDB file filename using residue_set to define any unknown residues.
+
+Also possible to convert smiles into param file with this https://pypi.org/project/rdkit-to-params/ 
