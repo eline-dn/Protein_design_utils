@@ -19,3 +19,17 @@ Now that the ResidueType is defined, the PDB file for ligand interface predictio
 Inside the relevant script or interpreter, create a non-standard ResidueTypeSet using the method generate_nonstandard_residue_set and use use pose_from_pdb to load data into to a pose object. The method pose_from_pdb is overloaded such that it can accept a Pose (poses), a ResidueTypeSet (residue_set), and a string (filename) and load into the poses the data in the PDB file filename using residue_set to define any unknown residues.
 
 Also possible to convert smiles into param file with this https://pypi.org/project/rdkit-to-params/ 
+```
+# trying to generate a param file from a pdb with ligand and smiles. goal: atoms names match the pdb names, (else pyrosetta crashes)
+
+import pyrosetta
+pyrosetta.init(extra_options='-mute all') # required for test
+from rdkit_to_params import Params
+# eg: "c1cc(oc1)CNc2cc(c(cc2C(=O)O)S(=O)(=O)N)Cl"
+smiles="c1cc(oc1)CNc2cc(c(cc2C(=O)O)S(=O)(=O)N)Cl"
+pdb_file="FUN.pdb"
+p = Params.from_smiles_w_pdbfile(pdb_file, smiles, name='FUN') # the name has to match.
+print(p.is_aminoacid()) # True
+p.dump('FUN.params')
+p.test().dump_pdb('test.pdb')
+``` 
